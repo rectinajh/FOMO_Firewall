@@ -50,8 +50,13 @@ export type StoredIntentRun = IntentRecord & {
 let database: DatabaseSync | undefined;
 
 function databaseFilename(): string {
-  const configured = process.env.DATABASE_URL || "file:./data/fomo-firewall.db";
-  return resolve(/* turbopackIgnore: true */ process.cwd(), configured.replace(/^file:/, ""));
+  // Vercel serverless filesystem is read-only except /tmp.
+  const configured =
+    process.env.DATABASE_URL ||
+    (process.env.VERCEL ? "file:/tmp/fomo-firewall.db" : "file:./data/fomo-firewall.db");
+  const path = configured.replace(/^file:/, "");
+  if (path.startsWith("/")) return path;
+  return resolve(/* turbopackIgnore: true */ process.cwd(), path);
 }
 
 function hasColumn(db: DatabaseSync, table: string, column: string): boolean {

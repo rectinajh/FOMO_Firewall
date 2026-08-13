@@ -1,0 +1,17 @@
+.env
+.env.*
+!.env.example
+.env.local
+.DS_Store
+node_modules
+.next
+data
+cache
+out
+.gstack
+.git
+broadcast
+src
+test
+script
+*.tsbuildinfo

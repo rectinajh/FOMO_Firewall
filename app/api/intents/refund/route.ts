@@ -3,6 +3,7 @@ import { z } from "zod";
 import { isSimulationRejection, settleIntent, SettlementError } from "../../../../lib/agent/settlement";
 
 export const runtime = "nodejs";
+export const maxDuration = 300;
 
 const requestSchema = z.object({
   intentId: z.string().regex(/^0x[0-9a-fA-F]{64}$/),

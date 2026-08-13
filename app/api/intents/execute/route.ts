@@ -16,6 +16,7 @@ import {
 } from "../../../../lib/evidence/store";
 
 export const runtime = "nodejs";
+export const maxDuration = 300;
 
 const requestSchema = z.object({
   text: z.string().trim().min(1).max(1_000),

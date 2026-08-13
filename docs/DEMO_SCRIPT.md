@@ -1,70 +1,287 @@
-# FOMO Firewall Demo Script
+# FOMO Firewall — Silent Demo Script
 
-Target length: 75 to 90 seconds. Record in English and add English captions.
+Target length: **5:12**. The video has no voiceover, so use the English text below as timed captions or on-screen callouts. Keep each caption visible long enough to read. Do not show API keys, private keys, terminal secrets, or wallet exports.
 
-## Before recording
+## Caption style
 
-- Use a clean browser window at desktop width.
-- Confirm the KeeperHub wallet has Base Sepolia ETH and at least 1 test USDC.
-- Keep `.env`, API keys, private keys, wallet exports, and terminal history off screen.
-- Open the three BaseScan transaction links in background tabs as backup evidence.
-- Use a fresh intent so the automatic settlement can be recorded end to end.
-- Verify that `MARKET_MODE=historical_replay` and `DEMO_AUTO_SETTLE=true`.
+- Use white text with a dark translucent background.
+- Use green for verified or completed states.
+- Use coral/red only for the blocked decision and safety warnings.
+- Keep captions to two or three short lines.
+- When a screen already contains a lot of text, show only the `Caption` column.
 
-## 0:00 to 0:10 | The problem
+## 0:00–0:24 — The problem
 
-Show the intent field and say:
+### Screen
 
-> ETH just moved 24% in one hour. I am afraid of missing out, so I am about to chase it with 1 USDC.
+Open on the FOMO Firewall landing screen. Hold on the headline before scrolling.
 
-Click **Evaluate intent**.
+### Caption
 
-## 0:10 to 0:23 | The policy decides
+```text
+Crypto wallets are optimized to execute quickly.
+They are not designed to protect decisions made under pressure.
+```
 
-Point to `Observed` and `Your rule`.
+```text
+After a sudden price surge, a user may chase the market,
+approve a transaction, and regret it only after confirmation.
+```
 
-> FOMO Firewall compares my intent with a rule I set while calm. The observed move is 24%, above my 15% limit, so a deterministic policy selects BLOCK_AND_COOLDOWN. The model cannot invent an address or move a different amount.
+## 0:24–0:48 — The vision
 
-## 0:23 to 0:48 | KeeperHub executes
+### Screen
 
-Click **Protect with FOMO Firewall** and keep the execution panel visible.
+Show the product headline and subtitle. Slowly scroll to the intent form.
 
-> KeeperHub is the execution and reliability layer. It simulates the USDC approval and vault lock before broadcast, uses stable idempotency keys, and returns execution IDs that the app persists before polling.
+### Caption
 
-Point to the two execution IDs and BaseScan links.
+```text
+Our vision:
+make the pause before irreversible onchain action a built-in primitive.
+```
 
-> The market move is a labeled historical replay. These approve and lock transactions are real Base Sepolia transactions executed through KeeperHub.
+```text
+FOMO Firewall is an onchain behavioral circuit breaker.
+It turns impulse into a transparent, time-delayed decision.
+```
 
-## 0:48 to 1:05 | The agent settles automatically
+## 0:48–1:12 — What the product does
 
-Keep the cooldown and agent loop visible.
+### Screen
 
-> After the onchain cooldown, the agent verifies the vault state and automatically asks KeeperHub to simulate and execute the refund. I do not need to click a second action.
+Show the two main panels: `State your intent` and `Evidence snapshot`.
 
-Point to the refund execution ID and `Protection completed` state.
+### Caption
 
-## 1:05 to 1:18 | The outcome
+```text
+The user sets a rule while calm.
+The agent evaluates a later intent against that rule.
+```
 
-Scroll to the FOMO Receipt.
+```text
+The agent can explain the decision,
+but it cannot override the user's policy.
+```
 
-> In the replay, chasing the move would have left 72 cents. With the firewall, the full 1 USDC returned from the vault. The project does not predict the market. It enforces the discipline chosen before the impulse.
+## 1:12–1:36 — Enter the intent
 
-## 1:18 to 1:28 | Verifiable proof
+### Screen
 
-Click **Download proof bundle**.
+Click into the text field and show:
 
-> Every step is portable evidence: policy version, market source, simulation result, KeeperHub execution ID, transaction hash, and a bundle hash.
+```text
+ETH has pumped a lot, and I’m afraid of missing out.
+I want to buy with 1 USDC now.
+```
 
-End on the completed execution panel and product title.
+### Caption
 
-## One-line submission pitch
+```text
+This is a natural-language purchase intent.
+The current MVP supports ETH and USDC on Base Sepolia.
+```
 
-> FOMO Firewall is an onchain behavioral circuit breaker that turns impulsive market chasing into a time-locked, observable transaction through KeeperHub.
+```text
+The parser extracts the asset, action, and amount.
+It does not receive a wallet address or transaction calldata from the user text.
+```
 
-## KeeperHub integration statement
+## 1:36–2:00 — Show the evidence snapshot
 
-> The agent uses KeeperHub Direct Execution to simulate, execute, recover, and verify Base Sepolia USDC approval, vault lock, and refund transactions. Stable idempotency keys prevent duplicate actions when outcomes are uncertain, while execution IDs and explorer links make every step observable.
+### Screen
 
-## Accuracy statement
+Point to `ETH`, `1 USDC`, `24%`, `$3,200`, `historical replay`, and `fomo-v1`.
 
-> Market movement in the demo is a clearly labeled historical replay for reproducibility. Every KeeperHub transaction shown is a live Base Sepolia execution.
+### Caption
+
+```text
+The market snapshot is intentionally labeled historical replay.
+This makes the demo reproducible for every judge.
+```
+
+```text
+The market story is simulated for repeatability.
+The later lock and refund transactions are real Base Sepolia transactions.
+```
+
+## 2:00–2:22 — Evaluate the policy
+
+### Screen
+
+Click **Evaluate intent**. Show the five-second observation countdown.
+
+### Caption
+
+```text
+The policy is deterministic:
+block when the one-hour move is at least 15% and the amount reaches the guard limit.
+```
+
+```text
+No floating-point or free-form model output controls the protected amount.
+```
+
+## 2:22–2:48 — Explain the block
+
+### Screen
+
+Show `BLOCK_AND_COOLDOWN` and the signal table.
+
+### Caption
+
+```text
+Observed: +24% in one hour
+Your rule: maximum +15%
+Decision: BLOCK_AND_COOLDOWN
+```
+
+```text
+This is not a price prediction.
+It is a precommitted behavioral rule protecting the user's future self.
+```
+
+## 2:48–3:12 — Introduce KeeperHub
+
+### Screen
+
+Scroll or focus on `Agent loop · KeeperHub execution`.
+
+### Caption
+
+```text
+KeeperHub is the execution and reliability layer.
+It is not the policy engine and not the vault contract.
+```
+
+```text
+FOMO Firewall decides what the policy allows.
+KeeperHub safely carries out the approved onchain calls.
+```
+
+## 3:12–3:42 — Simulation before broadcast
+
+### Screen
+
+Click **Protect with FOMO Firewall**. Show the simulation and execution states.
+
+### Caption
+
+```text
+Every write follows the same safety path:
+simulate → reject if it would revert → broadcast → verify.
+```
+
+```text
+If simulation fails, the system stops with:
+SAFETY STOP · NOT BROADCAST
+```
+
+## 3:42–4:06 — Approval and vault lock
+
+### Screen
+
+Show `Simulation`, `Approve`, and `Lock` changing to green. Keep the execution rows visible.
+
+### Caption
+
+```text
+First, KeeperHub approves the exact USDC amount.
+Then it locks that amount in FomoVault.
+```
+
+```text
+The app stores each execution ID before polling for the final result.
+Refreshing the page does not create a duplicate transaction.
+```
+
+## 4:06–4:28 — Show the protected state
+
+### Screen
+
+Show `Protection locked`, the intent ID, and the cooldown timer.
+
+### Caption
+
+```text
+The funds are now protected by an onchain cooldown.
+The contract, not the browser, enforces ownership and unlock time.
+```
+
+```text
+The user has time to reconsider before an irreversible trade could happen.
+```
+
+## 4:28–4:48 — Automatic settlement
+
+### Screen
+
+Let the countdown reach zero. Show `Agent is automatically settling through KeeperHub…`.
+
+### Caption
+
+```text
+When the cooldown ends, the agent checks the vault state.
+It does not ask the user to remember a second manual step.
+```
+
+```text
+The settlement service simulates and executes the refund through KeeperHub.
+```
+
+## 4:48–5:00 — Completed refund
+
+### Screen
+
+Show `Refunded`, `Protection completed`, and the three execution rows.
+
+### Caption
+
+```text
+The full 1 USDC is returned from the vault.
+Protection completed on Base Sepolia.
+```
+
+```text
+Approve → Lock → Refund
+Simulation passed · broadcast verified
+```
+
+## 5:00–5:12 — Proof and closing message
+
+### Screen
+
+Click **Download proof bundle**. Briefly show the JSON file, then return to the completed page.
+
+### Caption
+
+```text
+The result is portable proof, not just a success message:
+policy, market snapshot, execution IDs, transaction hashes, and bundle hash.
+```
+
+```text
+We do not predict the market.
+We protect users from impulsive execution.
+```
+
+## Optional end card
+
+If the video editor allows a one-second end card, use:
+
+```text
+FOMO Firewall
+Your policy decides. KeeperHub executes.
+```
+
+## Current run evidence
+
+If the recording shows the latest run, these are the corresponding KeeperHub execution IDs:
+
+| Step | Execution ID | BaseScan |
+|---|---|---|
+| USDC approve | `5a6k0oew8cb5qehamx8wj` | [Transaction](https://sepolia.basescan.org/tx/0x64cd70bf691db96440a14e24b1c48ccd15481d6ceef7209dfa6b28b6fb58322c) |
+| Vault lock | `p2wop1npe4stt3sdedshz` | [Transaction](https://sepolia.basescan.org/tx/0x4913bab4ce769266b0d9c1f859903d3f03dbd72eba7e4d1cc1548098fc411551) |
+| Vault refund | `xbdwcsx3gmhy00wezsvmu` | [Transaction](https://sepolia.basescan.org/tx/0x874c0aee99d7d6294aedd45ada21a3fbe1e413b955ebbd02540e3a4861680d73) |
+
+Use these links only if the video shows this exact run. Otherwise replace them with the three links generated by the recorded run.

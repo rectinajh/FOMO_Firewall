@@ -9,6 +9,7 @@ import {
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+export const maxDuration = 300;
 
 const requestSchema = z.object({
   intentId: z.string().regex(/^0x[0-9a-fA-F]{64}$/).optional(),
