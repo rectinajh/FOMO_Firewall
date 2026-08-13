@@ -246,7 +246,6 @@ The core boundary remains the same: the agent proposes, deterministic policy gat
 ## Documentation
 
 - [Technical Design](docs/TECHNICAL_DESIGN.md)
-- [English Demo Script](docs/DEMO_SCRIPT.md)
 
 Internal planning documents remain in Chinese and are intentionally separated from the judge-facing reading path:
 
