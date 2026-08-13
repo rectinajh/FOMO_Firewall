@@ -1,0 +1,14 @@
+.env
+.env.*
+!.env.example
+.DS_Store
+node_modules/
+.next/
+*.tsbuildinfo
+dist/
+coverage/
+cache/
+out/
+data/*.db
+data/*.db-*
+.gstack/
