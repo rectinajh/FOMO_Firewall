@@ -33,7 +33,7 @@ type ExecutionView = {
 
 type RefundView = { refund?: KeeperAction | null };
 
-const DEFAULT_TEXT = "ETH 已经涨很多了，我怕错过，现在想投入 1 USDC。";
+const DEFAULT_TEXT = "ETH is pumping and I am afraid of missing out. I want to buy with 1 USDC.";
 
 export default function Home() {
   const [text, setText] = useState(DEFAULT_TEXT);
@@ -257,7 +257,7 @@ export default function Home() {
             </div>}
             <div className="status"><span className="dot" />{blocked ? "Ready to protect this amount on Base Sepolia" : "No vault action required"}</div>
             {blocked && !execution && <>
-              <div className="status"><span className="dot" />{evaluationSecondsLeft > 0 ? `冷静观察中：${evaluationSecondsLeft}s 后可以开始下一步` : "冷静期结束，可以开始下一步"}</div>
+              <div className="status"><span className="dot" />{evaluationSecondsLeft > 0 ? `Observation period: continue in ${evaluationSecondsLeft}s` : "Observation complete · ready for the next step"}</div>
               <button className="button" style={{ marginTop: 16 }} onClick={protect} disabled={executing || evaluationSecondsLeft > 0}>{executing ? "Protecting on Base Sepolia…" : evaluationSecondsLeft > 0 ? "Waiting for cooldown…" : "Protect with FOMO Firewall"}</button>
             </>}
             {execution && <div className="status">{refund ? "Protection completed. Funds returned." : protectionFailed ? "Protection stopped before lock." : "Protection locked."} Intent: {execution.intentId.slice(0, 10)}…</div>}

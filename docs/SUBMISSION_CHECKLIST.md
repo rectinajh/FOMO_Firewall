@@ -73,7 +73,7 @@ Amount: 1 USDC
 Decision: BLOCK_AND_COOLDOWN
 ```
 
-说明模型负责解析和解释，确定性规则负责资金决策。
+说明当前 Agent 使用可测试的确定性 parser 提取意图，确定性规则负责资金决策；LLM 是未来可替换的解析层，不在资金关键路径中。
 
 ### 20–45 秒：KeeperHub 真实执行
 

@@ -85,13 +85,12 @@ KeeperHub/
 
 ### 必需
 
-- Node.js 20 或更高版本。
+- Node.js 24 或更高版本（使用内置 `node:sqlite`）。
 - npm。
 - KeeperHub 账户和组织级 API key，格式为 `kh_...`。
 - KeeperHub 自动创建的 Turnkey 钱包地址。
 - Base Sepolia ETH，用于 Gas。
 - Base Sepolia 测试 USDC。
-- 一个 LLM API key。
 - Base Sepolia RPC URL。
 
 ### 计划环境变量
@@ -99,12 +98,13 @@ KeeperHub/
 ```text
 KEEPERHUB_API_KEY=<server-only>
 KEEPERHUB_BASE_URL=https://app.keeperhub.com/api
-OPENAI_API_KEY=<server-only>
+KEEPERHUB_WALLET_ADDRESS=<organization-wallet>
 BASE_SEPOLIA_RPC_URL=<rpc-url>
 BASE_SEPOLIA_CHAIN_ID=84532
 BASE_SEPOLIA_USDC_ADDRESS=<verified-address>
 FOMO_VAULT_ADDRESS=<deployed-address>
-MAX_GUARD_AMOUNT_USDC=100
+DEMO_MINIMUM_GUARD_AMOUNT_USDC=1
+DEMO_AUTO_SETTLE=true
 DATABASE_URL=file:./data/fomo-firewall.db
 ```
 
@@ -159,7 +159,7 @@ DATABASE_URL=file:./data/fomo-firewall.db
 
 ### 阶段 3：Policy 与 Agent
 
-先实现并测试纯函数 Policy，再接 LLM：
+先实现并测试确定性 Parser 与纯函数 Policy；LLM 解析器仅作为生产扩展：
 
 1. `intent-parser.ts` 把自然语言转成 schema。
 2. 服务端校验资产和金额。
@@ -167,7 +167,7 @@ DATABASE_URL=file:./data/fomo-firewall.db
 4. Agent 生成一段只引用实际输入的解释。
 5. Orchestrator 根据动作调用 KeeperHub Adapter。
 
-退出条件：LLM 输出异常时不会触发交易；相同输入得到相同资金决策。
+退出条件：Parser 异常时不会触发交易；相同输入得到相同资金决策。未来接入 LLM 时仍复用 schema 和确定性 Policy 边界。
 
 ### 阶段 4：双时间线 UI
 
